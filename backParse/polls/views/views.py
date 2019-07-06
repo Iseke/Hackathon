@@ -11,6 +11,7 @@ from polls.models import Movies
 
 
 class MovieList(generics.ListCreateAPIView):
+    # Movies.objects.all().delete()
     queryset = Movies.objects.all()
     serializer_class = MovieSerializer
 
