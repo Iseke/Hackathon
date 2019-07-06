@@ -1,6 +1,7 @@
 from django.contrib import admin
-from polls.models import Movies
+from polls.models import  News
 
-@admin.register(Movies)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'director', 'producer', 'rating')
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'pagefrom', 'title', 'description', 'sentanalyze')

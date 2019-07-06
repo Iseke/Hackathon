@@ -6,14 +6,13 @@ from rest_framework import generics, filters
 
 from openpyxl import Workbook
 
-from polls.serializers import MovieSerializer
-from polls.models import Movies
+from polls.serializers import  NewsSerializer
+from polls.models import News
 
 
-class MovieList(generics.ListCreateAPIView):
-    # Movies.objects.all().delete()
-    queryset = Movies.objects.all()
-    serializer_class = MovieSerializer
+class NewsList(generics.ListCreateAPIView):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
 
 
 def dowLoadCSV(request):

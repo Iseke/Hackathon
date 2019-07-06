@@ -1,21 +1,17 @@
-import csv
 from tablib import Dataset
 from django.http import HttpResponse
-from rest_framework import status
+from polls.resources import  NewsResource
 
-from polls.models import Movies
 
 
 def simple_upload(request):
-    movie = Movies()
+    news = NewsResource()
     dataset = Dataset()
-    file = open('./polls/movies.csv', 'rb')
-    print(file.read())
-    # records = csv.reader(file)
-    # for line in records:
-    #     movie.title = line[1]
-    #     movie.director = line[2]
-    #     movie.producer = line[3]
-    #     movie.rating = line[4]
-    #     movie.save()
-    # file.close()
+    file = open('./polls/news.csv')
+    imported_data = dataset.load(file.read())
+    result = news.import_data(dataset, dry_run=True)  # Test the data import
+
+    if not result.has_errors():
+        news.import_data(dataset, dry_run=False)  # Actually import now
+
+    return HttpResponse()

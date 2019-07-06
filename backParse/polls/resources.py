@@ -1,8 +1,7 @@
 from import_export import resources
-from .models import Movies
+from .models import News
 
 
-class MoviesResource(resources.ModelResource):
-
+class NewsResource(resources.ModelResource):
     class Meta:
-        model = Movies
+        model = News

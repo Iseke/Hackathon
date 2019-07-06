@@ -1,13 +1,16 @@
 from rest_framework import serializers
 
-from polls.models import Movies
+from polls.models import News
 
-class MovieSerializer(serializers.ModelSerializer):
+
+
+
+class NewsSerializer(serializers.ModelSerializer):
+    pagefrom = serializers.CharField(required=False)
     title = serializers.CharField(required=False)
-    director = serializers.CharField(required=False)
-    producer = serializers.CharField(required=False)
-    rating = serializers.FloatField(required=False)
+    description = serializers.CharField(required=False)
+    sentanalyze = serializers.IntegerField(required=False)
 
     class Meta:
-        model = Movies
-        fields = ['id', 'title', 'director', 'producer', 'rating']
+        model = News
+        fields = ['id', 'pagefrom', 'title', 'description', 'sentanalyze']
