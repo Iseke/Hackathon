@@ -23,10 +23,19 @@
         <entry file="file://$PROJECT_DIR$/polls/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backParse/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="122" selection-start-line="122" selection-end-line="122" />
             </state>
           </provider>
         </entry>
@@ -44,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/polls/views/importView.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="192">
-              <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -120,7 +129,6 @@
       <list>
         <option value="$PROJECT_DIR$/backParse/urls.py" />
         <option value="$PROJECT_DIR$/import.py" />
-        <option value="$PROJECT_DIR$/backParse/settings.py" />
         <option value="$PROJECT_DIR$/polls/views/exportView.py" />
         <option value="$PROJECT_DIR$/polls/models.py" />
         <option value="$PROJECT_DIR$/polls/serializers.py" />
@@ -131,6 +139,7 @@
         <option value="$PROJECT_DIR$/polls/admin.py" />
         <option value="$PROJECT_DIR$/polls/views/importView.py" />
         <option value="$PROJECT_DIR$/polls/news.csv" />
+        <option value="$PROJECT_DIR$/backParse/settings.py" />
       </list>
     </option>
   </component>
@@ -244,7 +253,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.25" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -282,13 +291,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/import.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backParse/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/polls/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -348,7 +350,7 @@
     <entry file="file://$PROJECT_DIR$/polls/views/importView.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
-          <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -362,10 +364,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backParse/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="122" selection-start-line="122" selection-end-line="122" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/polls/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
