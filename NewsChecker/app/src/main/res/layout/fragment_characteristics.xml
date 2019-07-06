@@ -1,14 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Characteristics_page">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#e4e3db"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Characteristics" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingTop="56dp"
+        android:paddingRight="24dp">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/pcf"
+            android:text="@string/pick_News_Checker"
+            android:textColor="#f34a4a"
+            android:textSize="50sp" />
+
+        <!-- Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/new_acc_ti1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@android:color/white"
+            app:boxStrokeColor="#537072"
+            app:boxStrokeWidth="2dp"
+            app:errorEnabled="true"
+            android:textColorHint="#537072"
+            >
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/new_acc_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/pick_choose_portal"
+                android:inputType="textEmailAddress"
+                android:textColor="#f34a4a" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Name Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/new_acc_ti2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@android:color/white"
+            app:boxStrokeColor="#537072"
+            app:boxStrokeWidth="2dp"
+            app:errorEnabled="true"
+            android:textColorHint="#537072"
+            >
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/new_acc_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/pick_key_words"
+                android:textColor="#f34a4a" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:orientation="horizontal"
+            android:id="@+id/two_buttons">
+            <android.support.design.button.MaterialButton
+                android:layout_weight="1"
+                android:id="@+id/take_img_from_new_acc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+
+                android:background="@drawable/roundedbutton"
+                android:padding="12dp"
+                android:text="@string/pick_create"
+                android:textColor="#537072"
+                app:backgroundTint="@android:color/transparent"
+                app:strokeColor="#537072"
+                app:strokeWidth="2dp" />
+
+            <android.support.design.button.MaterialButton
+                android:layout_weight="1"
+                android:id="@+id/upload_img_from_new_acc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/roundedbutton"
+                android:padding="12dp"
+                android:text="@string/pick_download"
+                android:textColor="#537072"
+                app:backgroundTint="@android:color/transparent"
+                app:strokeColor="#537072"
+                app:strokeWidth="2dp"
+                android:layout_marginLeft="2dp"/>
+        </LinearLayout>
+        <!--            <android.support.design.button.MaterialButton
+                        android:id="@+id/link_from_new_acc"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/roundedbutton"
+                        android:padding="12dp"
+                        android:text="New Account"
+                        android:textColor="#537072"
+                        app:backgroundTint="@android:color/transparent"
+                        app:strokeColor="#537072"
+                        app:strokeWidth="2dp" />
+-->
+            </LinearLayout>
+
+
+</ScrollView>

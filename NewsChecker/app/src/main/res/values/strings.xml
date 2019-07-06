@@ -4,7 +4,11 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="news_info_title">Norway wx-minister sexually abused asylum seekers</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pick_News_Checker">News Checker</string>
+    <string name="pick_choose_portal">Choose News Portal</string>
+    <string name="pick_key_words">Key words with comma</string>
+    <string name="pick_create">Create New</string>
+    <string name="pick_download">Download</string>
+
 </resources>
