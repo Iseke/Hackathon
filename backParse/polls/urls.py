@@ -7,5 +7,6 @@ urlpatterns = [
     path('export/csv/', views.exportCSV),
     path('export/json/', views.exportJSON),
     path('export/excell/', views.exportEXCEL),
+    path('import/', views.simple_upload),
 
 ]
