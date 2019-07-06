@@ -81,7 +81,7 @@
             android:id="@+id/two_buttons">
             <android.support.design.button.MaterialButton
                 android:layout_weight="1"
-                android:id="@+id/take_img_from_new_acc"
+                android:id="@+id/pick_create_new"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -96,7 +96,7 @@
 
             <android.support.design.button.MaterialButton
                 android:layout_weight="1"
-                android:id="@+id/upload_img_from_new_acc"
+                android:id="@+id/pick_download"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"

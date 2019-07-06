@@ -43,10 +43,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_dashboard:
                     selected= new Characteristics_page();
                     break;
-                case R.id.navigation_notifications:
+                /*case R.id.navigation_notifications:
                     selected= new Profile_page();
-                    break;
+                    break;*/
             }
+            assert selected != null;
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out).replace(R.id.fragment_container, selected).commit();
             return true;
         }

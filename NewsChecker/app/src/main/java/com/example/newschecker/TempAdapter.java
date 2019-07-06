@@ -36,16 +36,6 @@ public class TempAdapter  extends RecyclerView.Adapter<TempAdapter.MyViewHolder 
         LoadImage loadImage=new LoadImage(myViewHolder.iv);
         loadImage.execute(url);
         myViewHolder.title.setText(news.get(position).getTitle());
-        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String url = news.get(position).getToUrl();
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                //Intent.startActivity(i);
-
-            }
-        });
     }
 
 
