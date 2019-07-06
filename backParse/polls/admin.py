@@ -1,3 +1,6 @@
 from django.contrib import admin
+from polls.models import Movies
 
-# Register your models here.
+@admin.register(Movies)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'director', 'producer', 'rating')
