@@ -1,15 +1,32 @@
 import csv
-
+import pandas as pd
 from django.shortcuts import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from polls.filters import NewsFilter
-
 from rest_framework import generics, filters
-
 from openpyxl import Workbook
+from rest_framework.views import APIView
+from polls.serializers import NewsSerializer,FilterDataSerializer
+from polls.models import News, FilterData
+from rest_framework.response import Response
+from rest_framework import status
 
-from polls.serializers import NewsSerializer
-from polls.models import News
+
+
+
+class FilterDataView(APIView):
+    def get(self, request):
+        movie1 = FilterData.objects.all()
+        serializer = FilterDataSerializer(movie1)
+        return Response(serializer.data)
+
+    def post(self,request):
+        site = request.data.pop('sitename')
+        word = request.data.pop('titlecontent')
+        data = pd.read_csv('./polls/news.csv')
+        data = data.loc[data.isin([site, word])]
+        data.to_csv('./polls/importnews.csv')
+        return Response(status=status.HTTP_200_OK)
 
 
 class NewsList(generics.ListCreateAPIView):
