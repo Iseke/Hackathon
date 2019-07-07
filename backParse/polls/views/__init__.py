@@ -1,3 +1,3 @@
-from .views import  dowLoadCSV, dowLoadXLSX, NewsList
+from .views import  NewsList
 from .exportView import exportCSV, exportEXCEL, exportJSON
 from .importView import simple_upload

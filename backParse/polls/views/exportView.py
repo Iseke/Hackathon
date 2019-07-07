@@ -1,8 +1,13 @@
 from django.http import HttpResponse
 from polls.resources import NewsResource
+from django_filters.rest_framework import DjangoFilterBackend
+from polls.filters import NewsFilter
+from rest_framework import filters
+
 
 def exportCSV(request):
     news = NewsResource()
+
     dataset = news.export()
     response = HttpResponse(dataset.csv, content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="news.csv"'

@@ -10,7 +10,9 @@ class NewsSerializer(serializers.ModelSerializer):
     title = serializers.CharField(required=False)
     description = serializers.CharField(required=False)
     sentanalyze = serializers.IntegerField(required=False)
+    photolink = serializers.CharField(required=False)
+    newslink = serializers.CharField(required=False)
 
     class Meta:
         model = News
-        fields = ['id', 'pagefrom', 'title', 'description', 'sentanalyze']
+        fields = ['id', 'pagefrom', 'title', 'description', 'sentanalyze', 'photolink', 'newslink']
