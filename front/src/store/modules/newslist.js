@@ -1,5 +1,6 @@
 import axios from 'axios'
-
+const SITE_STORE = 'cons-site'
+const WORD_STORE = 'cons-word'
 export default {
     state:{
         newsList:[],
@@ -13,8 +14,18 @@ export default {
         }
     },
     actions:{
+        loadFilters({commit}){
+            var curS  = JSON.parse(localStorage.getItem(SITE_STORE)|| '[]')
+            var curW  = JSON.parse(localStorage.getItem(WORD_STORE)|| '[]')
+            axios.post('http://localhost:8000/api/filterdata/',{
+                sitename: curS,
+                titlecontent: curW
+            }).then(res=>{});
+        },
         loadNews({commit}){
-            axios.get('http://localhost:8000/api/news/')
+            var curS  = JSON.parse(localStorage.getItem(SITE_STORE)|| '[]')
+            var curW  = JSON.parse(localStorage.getItem(WORD_STORE)|| '[]')
+            axios.get('http://localhost:8000/api/news/?pagefrom='+curS+'&title='+curW)
                  .then(res=>{
                      commit('SET_NEWS',res.data)
                  });

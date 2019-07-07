@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from polls.models import News
+from polls.models import News, FilterData
 
 
 
@@ -16,3 +16,13 @@ class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = ['id', 'pagefrom', 'title', 'description', 'sentanalyze', 'photolink', 'newslink']
+
+
+
+class FilterDataSerializer(serializers.ModelSerializer):
+    sitename = serializers.CharField(required=False)
+    titlecontent = serializers.CharField(required=False)
+
+    class Meta:
+        model= FilterData
+        fields = ['sitename', 'titlecontent']
