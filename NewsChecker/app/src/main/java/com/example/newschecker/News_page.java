@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,6 +17,21 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonArray;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,9 +79,60 @@ public class News_page extends Fragment {
         rv = view.findViewById(R.id.news_list_view);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         rv.setHasFixedSize(true);
-        LoadNews();
-        TempAdapter adapter = new TempAdapter(events);
-        rv.setAdapter(adapter);
+        final String Url="http://192.168.43.76:8000/api/news/";
+
+        RequestQueue requestQueue= Volley.newRequestQueue(getContext());
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, Url, null,
+                new Response.Listener() {
+                    @Override
+                    public void onResponse(Object response) {
+                        Log.e("Response", response.toString() );
+                        events=new ArrayList();
+                        JSONArray arr = objectToJSONArray(response);
+                        for (int i = 0; i < arr.length(); i++) {
+                            String pagefrom = null;
+                            try {
+                                pagefrom = arr.getJSONObject(i).getString("pagefrom");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            String title = null;
+                            try {
+                                title = arr.getJSONObject(i).getString("title");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            String photolink= null;
+                            try {
+                                photolink = arr.getJSONObject(i).getString("photolink");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            String newslink= null;
+                            try {
+                                newslink = arr.getJSONObject(i).getString("newslink");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            events.add(new News(pagefrom,photolink,title,newslink ));
+                         }
+                        TempAdapter adapter = new TempAdapter(events);
+                        rv.setAdapter(adapter);
+                    }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+
+                    }
+                });
+        requestQueue.add(jsonArrayRequest);
+
+
+
+
         rv.addOnItemTouchListener(new RecyclerTouchListener(getContext(), rv, new ClickListener() {
 
             @Override
@@ -84,22 +151,19 @@ public class News_page extends Fragment {
 
         return view;
     }
-
-    private void LoadNews() {
-        events = new ArrayList<>();
-        events.add(new News("Nur.kz","https://netstorage-nur.akamaized.net/images/2e9bb4b538e41838.jpg?imwidth=900","Плейлист Елбасы: какие песни любит и слушает Назарбаев (видео)","https://www.nur.kz/1803443-samyj-bogatyj-celovek-v-mire-oficialno-razvelsa.html"));
-        events.add(new News("Nur.kz","https://netstorage-nur.akamaized.net/images/850434832a9c0af2.jpg?imwidth=900","Когда спишут штрафы и пени по кредитам казахстанцев, рассказали в Нацбанке","https://www.nur.kz/1803443-samyj-bogatyj-celovek-v-mire-oficialno-razvelsa.html"));
-        events.add(new News("Nur.kz","https://netstorage-nur.akamaized.net/images/c3797302578c31f3.jpg?imwidth=900","Дочь Гульнары Каримовой рассказала о судьбе миллионов матери","https://www.nur.kz/1803443-samyj-bogatyj-celovek-v-mire-oficialno-razvelsa.html"));
-        events.add(new News("Nur.kz","https://netstorage-nur.akamaized.net/images/915ce1091d5e4e9d.jpg?imwidth=900","230 семей в Талдыкоргане получили ключи от квартир","https://www.nur.kz/1803443-samyj-bogatyj-celovek-v-mire-oficialno-razvelsa.html"));
-        events.add(new News("Nur.kz","https://netstorage-nur.akamaized.net/images/ebd2d89f36c97278.jpg?imwidth=900","Путин, Пашинян, Эрдоган: кто еще звонил Назарбаеву с поздравлениями","https://www.nur.kz/1803443-samyj-bogatyj-celovek-v-mire-oficialno-razvelsa.html"));
-        events.add(new News("Nur.kz","https://netstorage-nur.akamaized.net/images/21152c5e7e0ce1f3.jpg?imwidth=900","Взрыв прогремел в воинской части в Азербайджане","https://www.nur.kz/1803443-samyj-bogatyj-celovek-v-mire-oficialno-razvelsa.html"));
-        events.add(new News("Nur.kz","https://netstorage-nur.akamaized.net/images/dbf34b4c33e019d7.jpg?imwidth=900","Замакима Алматы Арман Кырыкбаев ушел в учебный отпуск","https://www.nur.kz/1803443-samyj-bogatyj-celovek-v-mire-oficialno-razvelsa.html"));
-        events.add(new News("Nur.kz","https://netstorage-nur.akamaized.net/images/f4bf958c008f967e.jpg?imwidth=900","Программа обновления автобусного парка набирает обороты","https://www.nur.kz/1803443-samyj-bogatyj-celovek-v-mire-oficialno-razvelsa.html"));
-        events.add(new News("Nur.kz","https://netstorage-nur.akamaized.net/images/812992cb0c770b3c.jpg?imwidth=900","Разрушенные после взрывов хозпостройки в Арыси ремонтировать не будут","https://www.nur.kz/1803443-samyj-bogatyj-celovek-v-mire-oficialno-razvelsa.html"));
-        events.add(new News("Nur.kz","https://netstorage-nur.akamaized.net/images/81814cf5c3a575d6.png?imwidth=900","Смартфон из золота за 2 млн тенге выпустили в честь Дня столицы","https://www.nur.kz/1803443-samyj-bogatyj-celovek-v-mire-oficialno-razvelsa.html"));
-        events.add(new News("Nur.kz","https://netstorage-nur.akamaized.net/images/61a5c38e9229d734.png?imwidth=900","\"Белоснежка. Сказка для взрослых\" и другие интригующие премьеры этого сезона","https://www.nur.kz/1803443-samyj-bogatyj-celovek-v-mire-oficialno-razvelsa.html"));
+    public static JSONArray objectToJSONArray(Object object){
+        Object json = null;
+        JSONArray jsonArray = null;
+        try {
+            json = new JSONTokener(object.toString()).nextValue();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-
+        if (json instanceof JSONArray) {
+            jsonArray = (JSONArray) json;
+        }
+        return jsonArray;
+    }
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
