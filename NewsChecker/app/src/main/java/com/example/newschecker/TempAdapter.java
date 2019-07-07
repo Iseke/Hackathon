@@ -36,6 +36,7 @@ public class TempAdapter  extends RecyclerView.Adapter<TempAdapter.MyViewHolder 
         LoadImage loadImage=new LoadImage(myViewHolder.iv);
         loadImage.execute(url);
         myViewHolder.title.setText(news.get(position).getTitle());
+        myViewHolder.from.setText(news.get(position).getFrom());
     }
 
 
@@ -46,11 +47,13 @@ public class TempAdapter  extends RecyclerView.Adapter<TempAdapter.MyViewHolder 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView iv;
-        TextView title;
+        TextView title,from;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             iv = itemView.findViewById(R.id.news_info_image_view);
             title = itemView.findViewById(R.id.news_info_title);
+            from=itemView.findViewById(R.id.news_info_from);
         }
     }
     private class LoadImage extends AsyncTask<String,Void, Bitmap> {

@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -47,6 +48,7 @@ public class News_page extends Fragment {
     private String mParam2;
     ArrayList<News> events ;
     RecyclerView rv;
+    private SearchView searchActivity;
     private OnFragmentInteractionListener mListener;
 
     public News_page() {
@@ -79,6 +81,33 @@ public class News_page extends Fragment {
         rv = view.findViewById(R.id.news_list_view);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         rv.setHasFixedSize(true);
+        searchActivity=view.findViewById(R.id.search_field);
+
+
+
+
+        rv.addOnItemTouchListener(new RecyclerTouchListener(getContext(), rv, new ClickListener() {
+
+            @Override
+            public void onClick(View view, final int position) {
+
+            }
+            @Override
+            public void onLongClick(View view, int position) {
+                String url = events.get(position).getToUrl();
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+
+            }
+        }));
+
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         final String Url="http://192.168.43.76:8000/api/news/";
 
         RequestQueue requestQueue= Volley.newRequestQueue(getContext());
@@ -115,7 +144,7 @@ public class News_page extends Fragment {
                                 e.printStackTrace();
                             }
                             events.add(new News(pagefrom,photolink,title,newslink ));
-                         }
+                        }
                         TempAdapter adapter = new TempAdapter(events);
                         rv.setAdapter(adapter);
                     }
@@ -129,28 +158,36 @@ public class News_page extends Fragment {
                     }
                 });
         requestQueue.add(jsonArrayRequest);
+        if(searchActivity!=null){
+            searchActivity.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
 
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    search(newText.toLowerCase());
+                    return true;
 
-
-
-        rv.addOnItemTouchListener(new RecyclerTouchListener(getContext(), rv, new ClickListener() {
-
-            @Override
-            public void onClick(View view, final int position) {
-
-            }
-            @Override
-            public void onLongClick(View view, int position) {
-                String url = events.get(position).getToUrl();
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
-
-            }
-        }));
-
-        return view;
+                }
+            });
+        }
     }
+
+    private void search(String str) {
+        ArrayList<News> mylist=new ArrayList<>();
+        for(News object:events){
+            if(object.getTitle().toLowerCase().contains(str)||object.getFrom().toLowerCase().contains(str)){
+                mylist.add(object);
+            }
+        }
+
+        TempAdapter adapterClass=new TempAdapter(mylist);
+        rv.setAdapter(adapterClass);
+
+    }
+
     public static JSONArray objectToJSONArray(Object object){
         Object json = null;
         JSONArray jsonArray = null;
