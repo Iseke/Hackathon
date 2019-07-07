@@ -30,9 +30,10 @@ page_html = uClient.read()
 uClient.close()
 
 page_soup = soup(page_html, "html.parser")
-containers = page_soup.findAll("a", {"class":"post-preview-mixed"})
+containers = page_soup.findAll("article", {"class":"block-infinite__item"})
 with open('nur.csv', 'w', encoding='utf-16') as f:
-    for c in containers:
-        news_title = c.div.div.img["alt"]
-        f.write(news_title + "#")
+	for c in containers:
+	    news_title = c.a.div.div.img["alt"]
+	    from_link = c.a["href"]
+	    f.write(news_title + "#" + from_link + "#")
         
