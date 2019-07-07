@@ -25,8 +25,8 @@ class NewsNew(models.Model):
 
     class Meta:
         ordering = ('id',)
-        verbose_name = 'News'
-        verbose_name_plural = 'News'
+        verbose_name = 'NEWNEW'
+        verbose_name_plural = 'NEWNEW'
 
 class FilterData(models.Model):
     sitename = models.CharField(max_length=1024)

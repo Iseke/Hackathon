@@ -7,12 +7,14 @@ from rest_framework import generics, filters
 from openpyxl import Workbook
 from rest_framework.views import APIView
 from polls.serializers import NewsSerializer,FilterDataSerializer
-from polls.models import News, FilterData
+from polls.models import News, FilterData,NewsNew
 from rest_framework.response import Response
 from rest_framework import status
 
 
-
+class NewNewView(generics.ListAPIView):
+    serializer_class = NewsSerializer
+    queryset = NewsNew.objects.all()
 
 class FilterDataView(APIView):
     def get(self, request):
@@ -24,8 +26,9 @@ class FilterDataView(APIView):
         site = request.data.pop('sitename')
         word = request.data.pop('titlecontent')
         data = pd.read_csv('./polls/news.csv')
-        data = data.loc[data.isin([site, word])]
-        data.to_csv('./polls/importnews.csv')
+        data = data[data['pagefrom'].str.contains(site)]
+        data = data[data['title'].str.contains(word)]
+        data.to_csv('./polls/importnews.csv',index=False)
         return Response(status=status.HTTP_200_OK)
 
 

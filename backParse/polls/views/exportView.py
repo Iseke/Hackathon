@@ -7,7 +7,6 @@ from rest_framework import filters
 
 def exportCSV(request):
     news = News2Resource()
-
     dataset = news.export()
     response = HttpResponse(dataset.csv, content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="news.csv"'

@@ -6,7 +6,9 @@ urlpatterns = [
     path('news/', views.NewsList.as_view()),
     path('export/csv/', views.exportCSV),
     path('export/json/', views.exportJSON),
-    path('export/excell/', views.exportEXCEL),
+    path('export/xlsx/', views.exportEXCEL),
     path('import/', views.simple_upload),
-    path('filterdata/', views.FilterDataView.as_view())
+    path('filterdata/', views.FilterDataView.as_view()),
+    path('finalApi/', views.NewNewView.as_view())
+
 ]

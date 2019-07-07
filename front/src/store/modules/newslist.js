@@ -22,6 +22,10 @@ export default {
                 titlecontent: curW
             }).then(res=>{});
         },
+        loadFinished({commit}){
+            axios.get('http://localhost:8000/api/import/')
+                .then(res=>{});
+        },
         loadNews({commit}){
             var curS  = JSON.parse(localStorage.getItem(SITE_STORE)|| '[]')
             var curW  = JSON.parse(localStorage.getItem(WORD_STORE)|| '[]')
@@ -60,7 +64,7 @@ export default {
         },
         loadExcellFormat({}){
             axios({
-                url: 'http://localhost:8000/api/export/excell/',
+                url: 'http://localhost:8000/api/export/xlsx/',
                 method: 'GET',
                 responseType: 'blob', // important
             }).then((response) => {
