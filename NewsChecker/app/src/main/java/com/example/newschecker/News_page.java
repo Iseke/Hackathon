@@ -143,7 +143,14 @@ public class News_page extends Fragment {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            events.add(new News(pagefrom,photolink,title,newslink ));
+                            String SentimentAnalysis= null;
+                            try {
+                                SentimentAnalysis = arr.getJSONObject(i).getString("sentanalyze");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            events.add(new News(pagefrom,photolink,title,newslink,SentimentAnalysis));
                         }
                         TempAdapter adapter = new TempAdapter(events);
                         rv.setAdapter(adapter);

@@ -5,15 +5,24 @@ public class News {
     String PictureURL="";
     String Title="";
     String ToUrl="";
+    String SentimentAnalysis="";
 
-    public News(String from, String pictureURL, String title, String toUrl) {
+    public News(String from, String pictureURL, String title, String toUrl, String sentimentAnalysis) {
         From = from;
         PictureURL = pictureURL;
         Title = title;
         ToUrl = toUrl;
+        SentimentAnalysis = sentimentAnalysis;
     }
 
 
+    public String getSentimentAnalysis() {
+        return SentimentAnalysis;
+    }
+
+    public void setSentimentAnalysis(String sentimentAnalysis) {
+        SentimentAnalysis = sentimentAnalysis;
+    }
 
     public String getFrom() {
         return From;

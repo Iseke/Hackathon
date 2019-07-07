@@ -3,6 +3,8 @@ package com.example.newschecker;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -37,7 +40,14 @@ public class TempAdapter  extends RecyclerView.Adapter<TempAdapter.MyViewHolder 
         loadImage.execute(url);
         myViewHolder.title.setText(news.get(position).getTitle());
         myViewHolder.from.setText(news.get(position).getFrom());
+        if(news.get(position).getSentimentAnalysis().equals("-1")) {
+            myViewHolder.relativeLayout.getBackground().setColorFilter(Color.parseColor("#e6e6ff"), PorterDuff.Mode.DARKEN);
+        }else if(news.get(position).getSentimentAnalysis().equals("1")){
+            myViewHolder.relativeLayout.getBackground().setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.DARKEN);
+        }
+
     }
+
 
 
     @Override
@@ -48,12 +58,14 @@ public class TempAdapter  extends RecyclerView.Adapter<TempAdapter.MyViewHolder 
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView iv;
         TextView title,from;
+        RelativeLayout relativeLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             iv = itemView.findViewById(R.id.news_info_image_view);
             title = itemView.findViewById(R.id.news_info_title);
             from=itemView.findViewById(R.id.news_info_from);
+            relativeLayout=itemView.findViewById(R.id.relative_layout);
         }
     }
     private class LoadImage extends AsyncTask<String,Void, Bitmap> {
