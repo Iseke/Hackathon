@@ -6,6 +6,8 @@ class News(models.Model):
     title = models.CharField(max_length=1024)
     description = models.CharField(max_length=1024)
     sentanalyze = models.IntegerField()
+    photolink = models.CharField(max_length=1024,default='')
+    newslink = models.CharField(max_length=1024,default='')
 
     class Meta:
         ordering = ('id',)
